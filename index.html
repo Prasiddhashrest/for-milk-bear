@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Question Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .gif-container {
+            margin-bottom: 20px;
+        }
+        .question {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        .options {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .option-button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+        }
+        .option-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="gif-container">
+            <img src="jump-bear.gif" alt="Animated GIF" width="300">
+        </div>
+        <div class="question">
+            Do you want to be my forever milk bear?
+        </div>
+        <div class="options">
+            <button class="option-button" id="yesButton" onclick="yesOption()">Yes</button>
+            <button class="option-button" id="noButton" onclick="noOption()">No</button>
+        </div>
+    </div>
+
+    <script>
+        let noButtonState = 0;
+
+        function yesOption() {
+            window.location.href = "another-page.html";
+        }
+
+        function noOption() {
+            const noButton = document.getElementById("noButton");
+            const yesButton = document.getElementById("yesButton");
+            noButtonState++;
+
+            switch (noButtonState) {
+                case 1:
+                    noButton.textContent = "Pretty please?";
+                    break;
+                case 2:
+                    noButton.textContent = "Think about it!";
+                    break;
+                case 3:
+                    noButton.textContent = "Are you sure?";
+                    break;
+                case 4:
+                    noButton.textContent = "Woah, look what's there!";
+                    break;
+                case 5:
+                    noButton.textContent = "No = Yes";
+                    noButton.setAttribute('onclick', 'yesOption()');
+                    yesButton.setAttribute('onclick', 'yesOption()');
+                    break;
+                default:
+                    yesOption();
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
